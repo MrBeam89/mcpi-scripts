@@ -13,6 +13,7 @@ try:
     from mcpi.minecraft import Minecraft
 except ModuleNotFoundError:
     print('[FATAL ERROR] mcpi module not installed, install it with "sudo pip3 install mcpi"')
+    exit()
 
 print("MCPI Spy by MrBeam89_")
 
@@ -25,13 +26,13 @@ except ConnectionRefusedError:
     print("[FATAL ERROR] Minecraft client isn't connected")
     exit()
 
-# Updates list of all player IDs
-def update():
+# Refreshes list of all player IDs
+def refresh():
     listbox.delete(0, listbox.size())
     entity_ids = mc.getPlayerEntityIds()
     for elementIndex in range(0, len(entity_ids)):
         listbox.insert(elementIndex, entity_ids[elementIndex])
-    print("[INFO] Updated player IDs list")
+    print("[INFO] Refreshed player IDs list")
 
 # The core program
 def spy():
@@ -81,14 +82,14 @@ normal_camera_radio.pack(anchor="w")
 fixed_camera_radio.pack(anchor="w")
 follow_camera_radio.pack(anchor="w")
 
-# Regular buttons to update and spy
+# Regular buttons to refresh and spy
 button_frame = Frame(root)
-update_btn = Button(button_frame, text="Update", command=update)
+refresh_btn = Button(button_frame, text="Refresh", command=refresh)
 spy_btn = Button(button_frame, text="Spy", command=spy)
 
 button_frame.pack(side="right", padx=10)
-update_btn.pack()
+refresh_btn.pack()
 spy_btn.pack()
 
-update()
+refresh()
 root.mainloop()
