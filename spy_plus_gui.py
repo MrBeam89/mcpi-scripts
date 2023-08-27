@@ -33,12 +33,12 @@ except ConnectionRefusedError:
     exit()
 
 # Updates list of all player usernames
-def update():
+def refresh():
     listbox.delete(0, listbox.size())
     usernames = mc.getUsernames()
     for elementIndex in range(0, len(usernames)):
         listbox.insert(elementIndex, usernames[elementIndex])
-    print("[INFO] Updated usernames list")
+    print("[INFO] Refreshed usernames list")
 
 # The core program
 def spy():
@@ -103,9 +103,9 @@ normal_camera_radio.pack(anchor="w")
 fixed_camera_radio.pack(anchor="w")
 follow_camera_radio.pack(anchor="w")
 
-# Regular buttons to update and spy
+# Regular buttons to refresh and spy
 button_frame = Frame(root)
-update_btn = Button(button_frame, text="Update", command=update)
+update_btn = Button(button_frame, text="Refresh", command=refresh)
 spy_btn = Button(button_frame, text="Spy", command=spy)
 
 button_frame.pack(side="right", padx=10)
@@ -130,5 +130,5 @@ z_label.pack()
 z_textbox.pack()
 
 # Start the program
-update()
+refresh()
 root.mainloop()
